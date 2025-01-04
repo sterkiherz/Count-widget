@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+    .widget-container {
+      text-align: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      width: 100%;
+    }
+    input[type="number"], input[type="text"] {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+    .counter-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="widget-container">
+  <div id="setup-form">
+    <input type="text" id="counter-title" placeholder="Enter title" required>
+    <input type="number" id="counter-total" placeholder="Enter total" required>
+    <button onclick="showCounter()">Create Counter</button>
+  </div>
+
+  <div id="counter-display" class="hidden">
+    <div class="counter-title" id="display-title"></div>
+    <div>
+      <span id="current-count">0</span> / <span id="total-count"></span>
+    </div>
+    <div>
+      <button onclick="increment()">+</button>
+      <button onclick="decrement()">-</button>
+      <button onclick="resetCounter()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showCounter() {
+    const title = document.getElementById('counter-title').value;
+    const total = parseInt(document.getElementById('counter-total').value);
+
+    if (title && total && total > 0) {
+      document.getElementById('display-title').textContent = title;
+      document.getElementById('total-count').textContent = total;
+
+      document.getElementById('setup-form').classList.add('hidden');
+      document.getElementById('counter-display').classList.remove('hidden');
+    } else {
+      alert('Please enter a valid title and total greater than 0.');
+    }
+  }
+
+  let count = 0;
+  function increment() {
+    const total = parseInt(document.getElementById('total-count').textContent);
+    if (count < total) {
+      count++;
+      document.getElementById('current-count').textContent = count;
+    }
+  }
+
+  function decrement() {
+    if (count > 0) {
+      count--;
+      document.getElementById('current-count').textContent = count;
+    }
+  }
+
+  function resetCounter() {
+    count = 0;
+    document.getElementById('current-count').textContent = count;
+  }
+</script>
+
+</body>
+</html>
