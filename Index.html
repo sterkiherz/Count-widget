@@ -35,13 +35,13 @@
       margin: 5px;
       padding: 10px 15px;
       border: none;
-      background: #007bff;
-      color: #fff;
+      background: #ffcc99; /* Peach color */
+      color: #333;
       border-radius: 4px;
       cursor: pointer;
     }
     button:hover {
-      background: #0056b3;
+      background: #ffb380; /* Darker peach on hover */
     }
     .hidden {
       display: none;
@@ -71,6 +71,7 @@
       <button onclick="decrement()">-</button>
       <button onclick="resetCounter()">Reset</button>
     </div>
+    <button onclick="resetForm()">Enter Information Again</button>
   </div>
 </div>
 
@@ -109,6 +110,15 @@
   function resetCounter() {
     count = 0;
     document.getElementById('current-count').textContent = count;
+  }
+
+  function resetForm() {
+    count = 0;
+    document.getElementById('current-count').textContent = count;
+    document.getElementById('setup-form').classList.remove('hidden');
+    document.getElementById('counter-display').classList.add('hidden');
+    document.getElementById('counter-title').value = '';
+    document.getElementById('counter-total').value = '';
   }
 </script>
 
